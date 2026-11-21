@@ -1,8 +1,7 @@
 {
-  "buildCommand": "cd code/client && npm install && npm run build",
+  "buildCommand": "cd code/client && npm install --no-audit --no-fund && npm run build",
   "outputDirectory": "code/client/build",
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
-
