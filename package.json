@@ -1,0 +1,14 @@
+{
+  "name": "bluebus-ticket-booking-system",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Enterprise-grade online bus reservation platform built with MERN Stack",
+  "scripts": {
+    "build": "cd code/client && npm install && npm run build",
+    "start": "cd code/server && npm start"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
+
