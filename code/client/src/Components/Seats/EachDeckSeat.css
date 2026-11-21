@@ -1,0 +1,246 @@
+/* EachDeckSeat.css - Professional Bus Berth/Seat Styling */
+
+.seat-container {
+  position: relative;
+  width: 76px;
+  height: 42px;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+  box-sizing: border-box;
+  font-family: inherit;
+  outline: none;
+}
+
+/* Berth Pillow on left side (standard for Indian bus sleeper berths) */
+.seat-pillow {
+  position: absolute;
+  left: 4px;
+  top: 6px;
+  bottom: 6px;
+  width: 6px;
+  border-radius: 3px;
+  transition: all 0.2s ease;
+}
+
+/* Inner content area */
+.seat-content {
+  margin-left: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.1;
+}
+
+/* 1. AVAILABLE SEAT */
+.seat-available {
+  background-color: #ffffff;
+  border: 1.5px solid #94a3b8;
+  color: #1e293b;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.seat-available .seat-pillow {
+  background-color: #e2e8f0;
+}
+
+.seat-available:hover {
+  border-color: #1446a0;
+  background-color: #f0f7ff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(20, 70, 160, 0.18);
+}
+
+.seat-available .seat-number {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.seat-available .seat-subtext {
+  font-size: 8.5px;
+  font-weight: 600;
+  color: #16a34a;
+  letter-spacing: 0.3px;
+  margin-top: 1px;
+}
+
+/* 2. SELECTED SEAT (By User) */
+.seat-selected {
+  background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+  border: 1.5px solid #166534;
+  color: #ffffff;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.35);
+  transform: translateY(-1px);
+}
+
+.seat-selected .seat-pillow {
+  background-color: #14532d;
+}
+
+.seat-selected:hover {
+  background: linear-gradient(135deg, #15803d 0%, #166534 100%);
+  box-shadow: 0 6px 16px rgba(22, 163, 74, 0.45);
+}
+
+.seat-selected .seat-number-row {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.seat-selected .seat-subtext {
+  font-size: 8px;
+  font-weight: 700;
+  color: #dcfce7;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-top: 1px;
+}
+
+/* 3A. BOOKED BY MALE PASSENGER (Male Seat) */
+.seat-booked-male {
+  background-color: #f1f5f9;
+  border: 1.5px solid #94a3b8;
+  color: #334155;
+  cursor: not-allowed;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.seat-booked-male .seat-pillow {
+  background-color: #64748b;
+}
+
+.seat-booked-male:hover {
+  border-color: #3b82f6;
+  background-color: #eff6ff;
+}
+
+.seat-booked-male .seat-number-row {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #1e3a8a;
+}
+
+.seat-booked-male .seat-subtext {
+  font-size: 8px;
+  font-weight: 800;
+  color: #2563eb;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-top: 1px;
+}
+
+/* 3B. BOOKED BY FEMALE PASSENGER (Ladies Seat) */
+.seat-booked-female {
+  background-color: #fdf2f8;
+  border: 1.5px solid #f472b6;
+  color: #831843;
+  cursor: not-allowed;
+  box-shadow: inset 0 1px 2px rgba(219, 39, 119, 0.08);
+}
+
+.seat-booked-female .seat-pillow {
+  background-color: #ec4899;
+}
+
+.seat-booked-female:hover {
+  border-color: #db2777;
+  background-color: #fce7f3;
+}
+
+.seat-booked-female .seat-number-row {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #9d174d;
+}
+
+.seat-booked-female .seat-subtext {
+  font-size: 8px;
+  font-weight: 800;
+  color: #db2777;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-top: 1px;
+}
+
+/* Fallback Booked (General) */
+.seat-booked {
+  background-color: #e2e8f0;
+  border: 1.5px solid #cbd5e1;
+  color: #64748b;
+  cursor: not-allowed;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.seat-booked .seat-pillow {
+  background-color: #94a3b8;
+}
+
+.seat-booked:hover {
+  border-color: #f87171;
+  background-color: #fee2e2;
+}
+
+.seat-booked .seat-number-row {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #475569;
+}
+
+.seat-booked .seat-subtext {
+  font-size: 8px;
+  font-weight: 800;
+  color: #dc2626;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-top: 1px;
+}
+
+/* Shake feedback when clicking on a booked seat */
+@keyframes seat-shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-4px); }
+  40%, 80% { transform: translateX(4px); }
+}
+
+.seat-booked-shake {
+  animation: seat-shake 0.3s ease-in-out;
+}
+
+/* Upright 2+2 Pushback Seater Styling */
+.seat-container.seat-seater {
+  width: 56px;
+  height: 44px;
+  border-radius: 8px 6px 6px 8px;
+}
+
+.seat-container.seat-seater .seat-pillow {
+  left: 3px;
+  top: 4px;
+  bottom: 4px;
+  width: 7px;
+  border-radius: 4px;
+}
+
+.seat-container.seat-seater .seat-content {
+  margin-left: 9px;
+}

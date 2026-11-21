@@ -1,0 +1,339 @@
+/* Official Classic Bus Ticket Invoice Styles - Exact Template Replication (media_1794110803139_46e3d7a3.jpg) */
+.original-ticket-wrapper {
+  max-width: 840px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  border: 2px solid #3730a3;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(67, 56, 202, 0.12);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: #0f172a;
+  position: relative;
+}
+
+/* Watermark Stamp */
+.ticket-watermark {
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-25deg);
+  font-size: 80px;
+  font-weight: 900;
+  color: rgba(67, 56, 202, 0.04);
+  border: 6px dashed rgba(67, 56, 202, 0.08);
+  padding: 12px 50px;
+  border-radius: 20px;
+  letter-spacing: 6px;
+  pointer-events: none;
+  user-select: none;
+  z-index: 1;
+}
+
+/* 1. Top Banner: Exact Blue/Purple "Bus Ticket" */
+.classic-ticket-banner {
+  background-color: #4b3ee8;
+  color: #ffffff;
+  padding: 18px 20px 14px 20px;
+  text-align: center;
+  position: relative;
+}
+
+.classic-ticket-title {
+  font-size: 34px;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  margin: 0;
+  line-height: 1.1;
+  text-transform: none;
+  color: #ffffff;
+}
+
+.classic-ticket-subtitle {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.88);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-top: 4px;
+  text-transform: uppercase;
+}
+
+/* 2. Structured Metadata Grid Table */
+.classic-meta-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  table-layout: fixed;
+}
+
+.classic-meta-table td,
+.classic-meta-table th {
+  border: 1px solid #475569;
+  padding: 6px 10px;
+  vertical-align: middle;
+  word-wrap: break-word;
+}
+
+.classic-th-purple {
+  background-color: #4b3ee8;
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 12px;
+  text-align: left;
+}
+
+.classic-label {
+  font-weight: 800;
+  color: #0f172a;
+  margin-right: 6px;
+  white-space: nowrap;
+}
+
+.classic-val {
+  color: #0f172a;
+  font-weight: 600;
+}
+
+.classic-val-bold {
+  color: #1e3a8a;
+  font-weight: 900;
+  font-size: 13.5px;
+}
+
+/* 3. Traveller Details Table */
+.classic-traveller-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+  table-layout: fixed;
+}
+
+.classic-traveller-table th {
+  background-color: #4b3ee8;
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 12.5px;
+  padding: 8px 10px;
+  border: 1px solid #3730a3;
+  text-align: center;
+}
+
+.classic-traveller-table td {
+  border: 1px solid #475569;
+  padding: 7px 10px;
+  color: #0f172a;
+  vertical-align: middle;
+}
+
+.classic-total-row {
+  background-color: #f8fafc;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.classic-total-row td {
+  border: 1px solid #475569;
+  padding: 7px 10px;
+}
+
+/* 4. Split Grid: Payment Breakup & Terms */
+.classic-bottom-split {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  width: 100%;
+  border-top: 1px solid #475569;
+}
+
+.classic-payment-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  height: 100%;
+}
+
+.classic-payment-table th {
+  background-color: #4b3ee8;
+  color: #ffffff;
+  font-weight: 800;
+  padding: 8px 10px;
+  border: 1px solid #3730a3;
+  text-align: left;
+}
+
+.classic-payment-table td {
+  border: 1px solid #475569;
+  padding: 5px 10px;
+  color: #0f172a;
+  font-weight: 600;
+}
+
+.classic-rate-cell {
+  background-color: #f8fafc;
+  color: #334155;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.classic-invoice-total-row {
+  background-color: #4b3ee8 !important;
+}
+
+.classic-invoice-total-row td {
+  color: #ffffff !important;
+  font-weight: 900;
+  font-size: 13.5px;
+  border: 1px solid #3730a3;
+  padding: 8px 10px;
+}
+
+/* Terms and Conditions Column */
+.classic-terms-box {
+  border-left: 1px solid #475569;
+  border-right: 1px solid #475569;
+  border-bottom: 1px solid #475569;
+  display: flex;
+  flex-direction: column;
+}
+
+.classic-terms-header {
+  background-color: #4b3ee8;
+  color: #ffffff;
+  font-weight: 800;
+  padding: 8px 12px;
+  font-size: 12.5px;
+  border-bottom: 1px solid #3730a3;
+}
+
+.classic-terms-content {
+  padding: 10px 14px;
+  font-size: 11px;
+  color: #1e293b;
+  line-height: 1.55;
+  flex: 1;
+  background-color: #ffffff;
+}
+
+.classic-terms-content ol {
+  margin: 0;
+  padding-left: 16px;
+}
+
+.classic-terms-content li {
+  margin-bottom: 5px;
+}
+
+/* 5. Exact Template Bottom Branding: myBillBook banner */
+.classic-mybillbook-banner {
+  background-color: #ffffff;
+  padding: 14px 20px;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  color: #334155;
+  font-weight: 600;
+}
+
+.classic-mybillbook-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.classic-mybillbook-badge .mbb-red {
+  color: #ea580c;
+  font-size: 15px;
+}
+
+.classic-google-play-pill {
+  background-color: #000000;
+  color: #ffffff;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 10.5px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  letter-spacing: 0.2px;
+}
+
+/* 6. Extra Real Working Features Strip (Contactless QR + AI Travel Assistant + Action Buttons) */
+.classic-extra-panel {
+  background-color: #f8fafc;
+  border-top: 2px dashed #cbd5e1;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.classic-qr-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  background-color: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 12px 16px;
+}
+
+.classic-ai-box {
+  background: linear-gradient(135deg, #f5f3ff 0%, #eff6ff 100%);
+  border: 1.5px solid #c7d2fe;
+  border-radius: 10px;
+  padding: 12px 16px;
+}
+
+.classic-action-bar {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Print Optimization */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .original-ticket-wrapper,
+  .original-ticket-wrapper * {
+    visibility: visible;
+  }
+  .original-ticket-wrapper {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100% !important;
+    max-width: 100% !important;
+    border: 1.5px solid #000000 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .classic-extra-panel {
+    border-top: 1px solid #475569;
+    background-color: #ffffff;
+    padding: 10px 0;
+  }
+  .classic-meta-table td,
+  .classic-meta-table th,
+  .classic-traveller-table td,
+  .classic-traveller-table th,
+  .classic-payment-table td,
+  .classic-payment-table th,
+  .classic-terms-box {
+    border-color: #000000 !important;
+  }
+}

@@ -1,0 +1,505 @@
+/* bookseat.module.css - RedBus / MakeMyTrip style Bus Layout */
+
+.main {
+  width: 90%;
+  max-width: 1240px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 30px;
+  margin: 30px auto 60px auto;
+}
+
+.seats {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Professional Legend Bar */
+.legendCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 16px;
+  background-color: #ffffff;
+  padding: 16px 20px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  margin-bottom: 25px;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.legendSample {
+  position: relative;
+  width: 44px;
+  height: 28px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  box-sizing: border-box;
+}
+
+.legendSamplePillow {
+  position: absolute;
+  left: 3px;
+  top: 4px;
+  bottom: 4px;
+  width: 4px;
+  border-radius: 2px;
+}
+
+.legendSampleAvailable {
+  background-color: #ffffff;
+  border: 1.5px solid #94a3b8;
+  color: #1e293b;
+}
+
+.legendSampleAvailable .legendSamplePillow {
+  background-color: #e2e8f0;
+}
+
+.legendSampleSelected {
+  background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+  border: 1.5px solid #166534;
+  color: #ffffff;
+}
+
+.legendSampleSelected .legendSamplePillow {
+  background-color: #14532d;
+}
+
+.legendSampleBooked {
+  background-color: #e2e8f0;
+  border: 1.5px solid #cbd5e1;
+  color: #64748b;
+}
+
+.legendSampleBooked .legendSamplePillow {
+  background-color: #94a3b8;
+}
+
+.legendSampleBookedMale {
+  background-color: #f1f5f9;
+  border: 1.5px solid #94a3b8;
+  color: #2563eb;
+}
+
+.legendSampleBookedMale .legendSamplePillow {
+  background-color: #64748b;
+}
+
+.legendSampleBookedFemale {
+  background-color: #fdf2f8;
+  border: 1.5px solid #f472b6;
+  color: #db2777;
+}
+
+.legendSampleBookedFemale .legendSamplePillow {
+  background-color: #ec4899;
+}
+
+.legendText {
+  display: flex;
+  flex-direction: column;
+}
+
+.legendTitle {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.legendSubtitle {
+  font-size: 11px;
+  color: #64748b;
+}
+
+/* Bus Deck Wrapper */
+.deckSection {
+  background-color: #ffffff;
+  border-radius: 14px;
+  border: 1.5px solid #e2e8f0;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  padding: 20px 24px;
+  margin-bottom: 25px;
+}
+
+.deckHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 14px;
+  margin-bottom: 20px;
+}
+
+.deckBadgeTitle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.deckBadge {
+  background-color: #1446a0;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 6px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.deckSubtitle {
+  font-size: 13px;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.driverCabin {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #f8fafc;
+  padding: 6px 14px;
+  border-radius: 8px;
+  border: 1px dashed #cbd5e1;
+  font-size: 12px;
+  font-weight: 700;
+  color: #475569;
+}
+
+/* Bus Chassis Interior */
+.busInterior {
+  background-color: #f8fafc;
+  border: 2px solid #cbd5e1;
+  border-radius: 14px;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 16px;
+  overflow-x: auto;
+}
+
+.frontCabinSide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 12px 10px;
+  background-color: #ffffff;
+  border: 1.5px dashed #cbd5e1;
+  border-radius: 10px;
+  min-width: 54px;
+  gap: 8px;
+  color: #475569;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+}
+
+.seatDeckRows {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: 1;
+}
+
+.seatRowWrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.rowTagLabel {
+  min-width: 66px;
+  font-size: 10px;
+  font-weight: 800;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.seatRow {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+/* Aisle separator */
+.aisleWalkway {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 0;
+  background: repeating-linear-gradient(
+    90deg,
+    #e2e8f0,
+    #e2e8f0 10px,
+    transparent 10px,
+    transparent 20px
+  );
+  border-radius: 4px;
+  position: relative;
+}
+
+.aisleText {
+  background-color: #f8fafc;
+  padding: 2px 14px;
+  font-size: 10px;
+  font-weight: 800;
+  color: #94a3b8;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.doubleRowGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Right Side - Bus Details & Booking Summary Card */
+.busdata {
+  width: 360px;
+  flex-shrink: 0;
+}
+
+.summaryCard {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  padding: 22px;
+  position: sticky;
+  top: 90px;
+}
+
+.operatorTitle {
+  font-size: 18px;
+  font-weight: 800;
+  color: #1e293b;
+  margin: 0 0 6px 0;
+}
+
+.busRouteRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f8fafc;
+  padding: 10px 14px;
+  border-radius: 8px;
+  margin: 12px 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: #1446a0;
+}
+
+.timingGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 12px 0;
+  padding: 10px;
+  background-color: #f8fafc;
+  border-radius: 8px;
+}
+
+.timingBox {
+  display: flex;
+  flex-direction: column;
+}
+
+.timingLabel {
+  font-size: 11px;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+}
+
+.timingValue {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.selectedSeatsSection {
+  margin: 16px 0;
+  padding: 12px 0;
+  border-top: 1px solid #f1f5f9;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.selectedSeatsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.selectedSeatsTitle {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.selectedCountBadge {
+  background-color: #dcfce7;
+  color: #15803d;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
+.seatBadgeList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.seatBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background-color: #16a34a;
+  color: #ffffff;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.seatRemoveBtn {
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 12px;
+  padding: 0;
+  line-height: 1;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.seatRemoveBtn:hover {
+  opacity: 1;
+}
+
+.noSeatsHint {
+  font-size: 12px;
+  color: #64748b;
+  font-style: italic;
+  padding: 6px 0;
+}
+
+.fareDetailsSection {
+  margin: 14px 0;
+}
+
+.fareRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: #64748b;
+  margin-bottom: 6px;
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 800;
+  color: #1e293b;
+  padding-top: 8px;
+  border-top: 1px dashed #cbd5e1;
+  margin-top: 8px;
+}
+
+.totalAmount {
+  font-size: 20px;
+  font-weight: 900;
+  color: #16a34a;
+}
+
+.proceedBtn {
+  width: 100%;
+  background: linear-gradient(135deg, #1446a0 0%, #0d2f6c 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 20px;
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(20, 70, 160, 0.3);
+  margin-top: 14px;
+}
+
+.proceedBtn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #0d2f6c 0%, #081d45 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(20, 70, 160, 0.4);
+}
+
+.proceedBtn:disabled {
+  background: #cbd5e1;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+.wrong {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.wrong img {
+  max-width: 450px;
+  width: 100%;
+}
+
+@media all and (max-width: 992px) {
+  .main {
+    flex-direction: column;
+    align-items: center;
+  }
+  .busdata {
+    width: 100%;
+  }
+  .summaryCard {
+    position: static;
+  }
+}
+
+@media all and (max-width: 600px) {
+  .main {
+    width: 95%;
+  }
+  .legendCard {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .busInterior {
+    padding: 12px;
+  }
+}
