@@ -7,11 +7,9 @@ import "./OriginalTicket.css";
 import { formatTime, getSeatBerthLabel } from "../../Utils/converObject";
 import { getCityBoardingPoints, getCityDroppingPoints } from "../../Utils/cityStops";
 import {
-  FaBus,
   FaCheckCircle,
   FaPrint,
   FaTimes,
-  FaQrcode,
   FaRobot,
   FaCopy,
   FaDownload,
@@ -41,6 +39,30 @@ function cleanOperatorName(rawName) {
 }
 
 function OriginalTicket({ ticketData, onClose, showCloseButton = false }) {
+  const ticketRef = useRef(null);
+  const [isGeneratingPdf, setIsGeneratingPdf] = useState(false);
+  const [aiTips, setAiTips] = useState(null);
+  const [copiedCoupon, setCopiedCoupon] = useState(false);
+
+  const fromCity = ticketData?.busDetails?.from || "Pune";
+  const toCity = ticketData?.busDetails?.to || "Jalgaon";
+
+  useEffect(() => {
+    if (toCity && ticketData) {
+      axios
+        .post(`${API_BASE_URL}/ai/travel-suggestions`, {
+          origin: fromCity,
+          destination: toCity,
+        })
+        .then((res) => {
+          if (res.data && res.data.suggestions) {
+            setAiTips(res.data.suggestions);
+          }
+        })
+        .catch(() => {});
+    }
+  }, [fromCity, toCity, ticketData]);
+
   if (!ticketData) return null;
 
   // Extract Ticket Identifiers
@@ -53,9 +75,6 @@ function OriginalTicket({ ticketData, onClose, showCloseButton = false }) {
     ticketData.busDetails?.companyname ||
     "IntrCity SmartBus";
   const cleanedOperator = cleanOperatorName(busName);
-
-  const fromCity = ticketData.busDetails?.from || "Pune";
-  const toCity = ticketData.busDetails?.to || "Jalgaon";
 
   const rawDate =
     ticketData.ticketSummary?.date || ticketData.journey?.date;
@@ -127,29 +146,6 @@ function OriginalTicket({ ticketData, onClose, showCloseButton = false }) {
       seat: sNum,
     }));
   }
-
-  // Sequence 4: AI Travel Suggestions
-  const [aiTips, setAiTips] = useState(null);
-  const [copiedCoupon, setCopiedCoupon] = useState(false);
-
-  useEffect(() => {
-    if (toCity) {
-      axios
-        .post(`${API_BASE_URL}/ai/travel-suggestions`, {
-          origin: fromCity,
-          destination: toCity,
-        })
-        .then((res) => {
-          if (res.data && res.data.suggestions) {
-            setAiTips(res.data.suggestions);
-          }
-        })
-        .catch(() => {});
-    }
-  }, [fromCity, toCity]);
-
-  const ticketRef = useRef(null);
-  const [isGeneratingPdf, setIsGeneratingPdf] = useState(false);
 
   const handleDownloadPdf = async () => {
     if (!ticketRef.current) return;
