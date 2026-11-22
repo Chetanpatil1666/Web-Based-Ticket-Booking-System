@@ -2,7 +2,13 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 
 let connect = () => {
-  return mongoose.connect(process.env.MONGO_PATH || "mongodb://127.0.0.1:27017/newbus");
+  const mongoUri =
+    process.env.MONGO_PATH ||
+    process.env.MONGO_URL ||
+    process.env.MONGODB_URL ||
+    process.env.DATABASE_URL ||
+    "mongodb://127.0.0.1:27017/newbus";
+  return mongoose.connect(mongoUri);
 };
 
 module.exports= connect;

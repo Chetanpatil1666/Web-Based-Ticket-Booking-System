@@ -4,7 +4,12 @@ const fs = require("fs");
 const path = require("path");
 
 async function seed() {
-  const mongoUri = process.env.MONGO_PATH || "mongodb://127.0.0.1:27017/newbus";
+  const mongoUri =
+    process.env.MONGO_PATH ||
+    process.env.MONGO_URL ||
+    process.env.MONGODB_URL ||
+    process.env.DATABASE_URL ||
+    "mongodb://127.0.0.1:27017/newbus";
   await mongoose.connect(mongoUri);
   console.log("Connected to MongoDB:", mongoUri);
 
