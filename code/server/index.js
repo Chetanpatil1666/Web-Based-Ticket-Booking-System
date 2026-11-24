@@ -79,7 +79,7 @@ async function ensureInitialData() {
   }
 }
 
-app.listen(port, async () => {
+app.listen(port, "0.0.0.0", async () => {
   try {
     await connect();
     await ensureInitialData();

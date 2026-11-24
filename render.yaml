@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: bluebus-backend
+    runtime: node
+    plan: free
+    region: oregon
+    branch: master
+    rootDir: code/server
+    buildCommand: npm install --no-audit --no-fund
+    startCommand: node index.js
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGO_PATH
+        value: mongodb+srv://raman:raman@cluster0.fm7rpoi.mongodb.net/ecom?retryWrites=true&w=majority
