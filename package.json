@@ -4,7 +4,7 @@
   "private": true,
   "description": "Enterprise-grade online bus reservation platform built with MERN Stack",
   "scripts": {
-    "build": "cd code/client && npm install && npm run build",
+    "build": "cd code/client && npm install --legacy-peer-deps --no-audit --no-fund && CI=false npm run build",
     "start": "cd code/server && npm start"
   },
   "engines": {

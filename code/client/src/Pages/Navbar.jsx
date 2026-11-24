@@ -3,8 +3,16 @@ import { success } from "../Utils/notification";
 import Cookies from "js-cookie";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutAPI } from "../Redux/authentication/auth.action";
-import { FaBus, FaHome, FaTicketAlt, FaUserCircle, FaSignOutAlt, FaRobot, FaInfoCircle, FaQuestionCircle, FaChartLine } from "react-icons/fa";
-
+import {
+  FaBus,
+  FaHome,
+  FaTicketAlt,
+  FaUserCircle,
+  FaSignOutAlt,
+  FaInfoCircle,
+  FaQuestionCircle,
+  FaChartLine,
+} from "react-icons/fa";
 const Navbar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();

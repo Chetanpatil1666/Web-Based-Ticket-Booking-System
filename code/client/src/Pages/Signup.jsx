@@ -13,7 +13,6 @@ import {
   FaMale,
   FaFemale,
   FaBus,
-  FaArrowRight,
   FaShieldAlt,
 } from "react-icons/fa";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";

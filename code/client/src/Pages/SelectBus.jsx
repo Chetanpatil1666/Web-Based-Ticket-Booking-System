@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { API_BASE_URL } from "../config/api";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import styles from "../Styles/selectbus.module.css";
 import axios from "axios";
 import { AiTwotoneStar } from "react-icons/ai";
-import { BiArrowFromLeft } from "react-icons/bi";
+
 import {
   FaBus,
   FaShieldAlt,
@@ -18,8 +18,7 @@ import {
   FaCheckCircle,
   FaInfoCircle,
   FaClock,
-  FaPercent,
-  FaTicketAlt,
+
 } from "react-icons/fa";
 import { saveDatafilter, filterdata } from "../Redux/filter/filter.action";
 import { removeall } from "../Redux/ticket/ticket.action";
@@ -111,17 +110,9 @@ function SelectBus() {
 
   useEffect(() => {
     dispatch(removeall());
-  }, []);
+  }, [dispatch]);
 
-  const fromCity = searchParams.get("from") || "Mumbai";
-  const toCity = searchParams.get("to") || "Pune";
-  const travelDate = searchParams.get("date") || new Date().toISOString().split("T")[0];
-
-  useEffect(() => {
-    getdata(fromCity, toCity, travelDate);
-  }, [searchParams]);
-
-  async function getdata(from, to, date) {
+  const getdata = useCallback(async (from, to, date) => {
     try {
       let res = await axios.post(`${API_BASE_URL}/bus/getall`, {
         from,
@@ -144,18 +135,26 @@ function SelectBus() {
             setAiData(aiRes.data);
           }
         })
-        .catch(() => {});
+        .catch(() => { });
     } catch (err) {
       console.log(err.message);
       setwentwrong(true);
     }
-  }
+  }, [dispatch]);
+
+  const fromCity = searchParams.get("from") || "Mumbai";
+  const toCity = searchParams.get("to") || "Pune";
+  const travelDate = searchParams.get("date") || new Date().toISOString().split("T")[0];
+
+  useEffect(() => {
+    getdata(fromCity, toCity, travelDate);
+  }, [fromCity, toCity, travelDate, getdata]);
 
   function handlebook(ele) {
     if (!ele || !ele._id) return;
     try {
       sessionStorage.setItem("busData", JSON.stringify([ele]));
-    } catch (e) {}
+    } catch (e) { }
     const curDate = searchParams.get("date") || new Date().toISOString().split("T")[0];
     navigate(`/bookticket/${ele._id}?date=${encodeURIComponent(curDate)}`);
   }
