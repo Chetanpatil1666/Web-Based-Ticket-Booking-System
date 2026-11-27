@@ -142,10 +142,34 @@ function Myticket() {
         axios.post(`${API_BASE_URL}/order/myticket/past`, { id: userid }).catch(() => ({ data: [] })),
       ]);
 
-      setdata(Array.isArray(allRes.data) ? allRes.data : []);
-      settoday(Array.isArray(todayRes.data) ? todayRes.data : []);
-      setUpcoming(Array.isArray(upcomingRes.data) ? upcomingRes.data : []);
-      setPast(Array.isArray(pastRes.data) ? pastRes.data : []);
+      let localOrders = [];
+      try {
+        const stored = localStorage.getItem("userBookings");
+        if (stored) localOrders = JSON.parse(stored);
+      } catch (e) {}
+
+      const serverAll = Array.isArray(allRes.data) ? allRes.data : [];
+      const existingIds = new Set(serverAll.map((o) => String(o._id)));
+      const combinedAll = [...serverAll, ...localOrders.filter((o) => !existingIds.has(String(o._id)))];
+
+      const todayStr = new Date().toISOString().split("T")[0];
+      const todayList = combinedAll.filter((o) => {
+        const d = String(o.ticketSummary?.date || "").split("T")[0];
+        return d === todayStr;
+      });
+      const upcomingList = combinedAll.filter((o) => {
+        const d = String(o.ticketSummary?.date || "").split("T")[0];
+        return d > todayStr;
+      });
+      const pastList = combinedAll.filter((o) => {
+        const d = String(o.ticketSummary?.date || "").split("T")[0];
+        return d < todayStr;
+      });
+
+      setdata(combinedAll);
+      settoday(todayList.length > 0 ? todayList : (Array.isArray(todayRes.data) ? todayRes.data : []));
+      setUpcoming(upcomingList.length > 0 ? upcomingList : (Array.isArray(upcomingRes.data) ? upcomingRes.data : []));
+      setPast(pastList.length > 0 ? pastList : (Array.isArray(pastRes.data) ? pastRes.data : []));
     } catch (err) {
       console.error("Error fetching tickets:", err);
     } finally {
