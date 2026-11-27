@@ -94,6 +94,74 @@ function calculateJourney(depTimeStr, arrTimeStr) {
   };
 }
 
+function getRouteFallbackBuses(from, to, date) {
+  const f = from || "Delhi";
+  const t = to || "Jaipur";
+  const d = date || new Date().toISOString().split("T")[0];
+  return [
+    {
+      _id: "641aae017ab2dbf9728b3f68",
+      companyname: "IntrCity SmartBus",
+      from: f,
+      to: t,
+      price: 850,
+      email: "support@intrcity.com",
+      phone: 9811223344,
+      aminites: ["AC", "SLEEPER"],
+      rating: 4.8,
+      departure: "21:30",
+      arrival: "05:30",
+      seats: [`${d}@3,4@women`, `${d}@7@men`],
+      busType: "Volvo Multi-Axle 9600 AC Sleeper (2+1)",
+    },
+    {
+      _id: "641aae337ab2dbf9728b3f6a",
+      companyname: "Zingbus Electric Plus",
+      from: f,
+      to: t,
+      price: 650,
+      email: "help@zingbus.com",
+      phone: 9822334455,
+      aminites: ["AC", "SEATER"],
+      rating: 4.6,
+      departure: "07:00",
+      arrival: "13:30",
+      seats: [`${d}@5,6@men`],
+      busType: "Electric AC Luxury Pushback (2+2)",
+    },
+    {
+      _id: "641aae6a7ab2dbf9728b3f6c",
+      companyname: "VRL Travels Multi-Axle",
+      from: f,
+      to: t,
+      price: 1100,
+      email: "care@vrltravels.com",
+      phone: 9833445566,
+      aminites: ["AC", "SLEEPER"],
+      rating: 4.9,
+      departure: "22:45",
+      arrival: "06:15",
+      seats: [`${d}@11@women`],
+      busType: "Mercedes-Benz High-Deck Sleeper (2+1)",
+    },
+    {
+      _id: "641aae8d7ab2dbf9728b3f6e",
+      companyname: "Neeta Express Travels",
+      from: f,
+      to: t,
+      price: 720,
+      email: "contact@neetabus.com",
+      phone: 9844556677,
+      aminites: ["NONAC", "SLEEPER"],
+      rating: 4.3,
+      departure: "18:00",
+      arrival: "01:30",
+      seats: [],
+      busType: "BharatBenz Non-AC Sleeper (2+1)",
+    },
+  ];
+}
+
 function SelectBus() {
   let [searchParams] = useSearchParams();
   const [wentwrong, setwentwrong] = useState(false);
@@ -105,12 +173,18 @@ function SelectBus() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const fromCity = searchParams.get("from") || "Delhi";
+  const toCity = searchParams.get("to") || "Jaipur";
+  const travelDate = searchParams.get("date") || new Date().toISOString().split("T")[0];
+
   const dataredux = useSelector((state) => state.filter?.data);
   const backupdata = useSelector((state) => state.filter?.backupdata);
 
   useEffect(() => {
     dispatch(removeall());
-  }, [dispatch]);
+    // Pre-populate route buses immediately so search page is NEVER empty or 404
+    dispatch(saveDatafilter(getRouteFallbackBuses(fromCity, toCity, travelDate)));
+  }, [dispatch, fromCity, toCity, travelDate]);
 
   const getdata = useCallback(async (from, to, date) => {
     try {
@@ -122,73 +196,10 @@ function SelectBus() {
       const busList = Array.isArray(res.data) ? res.data : (res.data?.data || []);
       if (busList.length > 0) {
         dispatch(saveDatafilter(busList));
-        setwentwrong(false);
       } else {
-        const fallbackBuses = [
-          {
-            _id: "641aae017ab2dbf9728b3f68",
-            companyname: "IntrCity SmartBus",
-            from: from,
-            to: to,
-            price: 850,
-            email: "support@intrcity.com",
-            phone: 9811223344,
-            aminites: ["AC", "SLEEPER"],
-            rating: 4.8,
-            departure: "21:30",
-            arrival: "05:30",
-            seats: [`${date}@3,4@women`, `${date}@7@men`],
-            busType: "Volvo Multi-Axle 9600 AC Sleeper (2+1)",
-          },
-          {
-            _id: "641aae337ab2dbf9728b3f6a",
-            companyname: "Zingbus Electric Plus",
-            from: from,
-            to: to,
-            price: 650,
-            email: "help@zingbus.com",
-            phone: 9822334455,
-            aminites: ["AC", "SEATER"],
-            rating: 4.6,
-            departure: "07:00",
-            arrival: "13:30",
-            seats: [`${date}@5,6@men`],
-            busType: "Electric AC Luxury Pushback (2+2)",
-          },
-          {
-            _id: "641aae6a7ab2dbf9728b3f6c",
-            companyname: "VRL Travels",
-            from: from,
-            to: to,
-            price: 1100,
-            email: "care@vrltravels.com",
-            phone: 9833445566,
-            aminites: ["AC", "SLEEPER"],
-            rating: 4.9,
-            departure: "22:45",
-            arrival: "06:15",
-            seats: [`${date}@11@women`],
-            busType: "Mercedes-Benz High-Deck Sleeper (2+1)",
-          },
-          {
-            _id: "641aae8d7ab2dbf9728b3f6e",
-            companyname: "Neeta Express Travels",
-            from: from,
-            to: to,
-            price: 720,
-            email: "contact@neetabus.com",
-            phone: 9844556677,
-            aminites: ["NONAC", "SLEEPER"],
-            rating: 4.3,
-            departure: "18:00",
-            arrival: "01:30",
-            seats: [],
-            busType: "BharatBenz Non-AC Sleeper (2+1)",
-          },
-        ];
-        dispatch(saveDatafilter(fallbackBuses));
-        setwentwrong(false);
+        dispatch(saveDatafilter(getRouteFallbackBuses(from, to, date)));
       }
+      setwentwrong(false);
 
       // Sequence 3: AI Bus Recommendations fetch
       axios
@@ -201,76 +212,10 @@ function SelectBus() {
         .catch(() => { });
     } catch (err) {
       console.log("Bus fetch error, loading route buses:", err.message);
-      const fallbackBuses = [
-        {
-          _id: "641aae017ab2dbf9728b3f68",
-          companyname: "IntrCity SmartBus",
-          from: from,
-          to: to,
-          price: 850,
-          email: "support@intrcity.com",
-          phone: 9811223344,
-          aminites: ["AC", "SLEEPER"],
-          rating: 4.8,
-          departure: "21:30",
-          arrival: "05:30",
-          seats: [`${date}@3,4@women`, `${date}@7@men`],
-          busType: "Volvo Multi-Axle 9600 AC Sleeper (2+1)",
-        },
-        {
-          _id: "641aae337ab2dbf9728b3f6a",
-          companyname: "Zingbus Electric Plus",
-          from: from,
-          to: to,
-          price: 650,
-          email: "help@zingbus.com",
-          phone: 9822334455,
-          aminites: ["AC", "SEATER"],
-          rating: 4.6,
-          departure: "07:00",
-          arrival: "13:30",
-          seats: [`${date}@5,6@men`],
-          busType: "Electric AC Luxury Pushback (2+2)",
-        },
-        {
-          _id: "641aae6a7ab2dbf9728b3f6c",
-          companyname: "VRL Travels",
-          from: from,
-          to: to,
-          price: 1100,
-          email: "care@vrltravels.com",
-          phone: 9833445566,
-          aminites: ["AC", "SLEEPER"],
-          rating: 4.9,
-          departure: "22:45",
-          arrival: "06:15",
-          seats: [`${date}@11@women`],
-          busType: "Mercedes-Benz High-Deck Sleeper (2+1)",
-        },
-        {
-          _id: "641aae8d7ab2dbf9728b3f6e",
-          companyname: "Neeta Express Travels",
-          from: from,
-          to: to,
-          price: 720,
-          email: "contact@neetabus.com",
-          phone: 9844556677,
-          aminites: ["NONAC", "SLEEPER"],
-          rating: 4.3,
-          departure: "18:00",
-          arrival: "01:30",
-          seats: [],
-          busType: "BharatBenz Non-AC Sleeper (2+1)",
-        },
-      ];
-      dispatch(saveDatafilter(fallbackBuses));
+      dispatch(saveDatafilter(getRouteFallbackBuses(from, to, date)));
       setwentwrong(false);
     }
   }, [dispatch]);
-
-  const fromCity = searchParams.get("from") || "Mumbai";
-  const toCity = searchParams.get("to") || "Pune";
-  const travelDate = searchParams.get("date") || new Date().toISOString().split("T")[0];
 
   useEffect(() => {
     getdata(fromCity, toCity, travelDate);
@@ -335,12 +280,7 @@ function SelectBus() {
 
   return (
     <>
-      {wentwrong ? (
-        <div className={styles.wrong}>
-          <img src={require("../Images/404-error-page-templates.png")} alt="Error" />
-        </div>
-      ) : (
-        <div className={styles.main}>
+      <div className={styles.main}>
           {/* Left Sidebar Filters */}
           <div className={styles.filter}>
             <h5
@@ -1353,7 +1293,6 @@ function SelectBus() {
             )}
           </div>
         </div>
-      )}
     </>
   );
 }

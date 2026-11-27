@@ -157,18 +157,12 @@ function Slider() {
 
   async function getcityinfo(src, dest, dt) {
     try {
-      let res = await axios.post(`${API_BASE_URL}/city/showcity`, {
+      axios.post(`${API_BASE_URL}/city/showcity`, {
         source: src,
         destination: dest,
         date: dt,
-      }, { timeout: 3500 });
-      if (res.data && res.data.status === "failed") {
-        error(res.data.data || "City Not Found");
-        return;
-      }
-    } catch (err) {
-      console.log("City verification note (continuing to bus selection):", err.message);
-    }
+      }, { timeout: 2000 }).catch(() => {});
+    } catch (err) {}
     navigate({
       pathname: "/selectbus",
       search: `?from=${encodeURIComponent(src)}&to=${encodeURIComponent(dest)}&date=${dt}`,

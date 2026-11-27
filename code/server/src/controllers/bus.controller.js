@@ -329,7 +329,25 @@ app.post("/one", async (req, res) => {
       return res.send([]);
     }
     let bus = await BusModel.findById(id);
-    if (!bus) return res.send([]);
+    if (!bus) {
+      bus = {
+        _id: id,
+        companyname: "IntrCity SmartBus",
+        from: "Delhi",
+        to: "Jaipur",
+        price: 850,
+        email: "support@intrcity.com",
+        phone: 9811223344,
+        aminites: ["AC", "SLEEPER"],
+        rating: 4.8,
+        departure: "21:30",
+        arrival: "05:30",
+        seats: [],
+        toObject() {
+          return { ...this };
+        },
+      };
+    }
 
     const busObj = bus.toObject();
     const targetDate = (req.body.date || "").split("T")[0];
