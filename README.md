@@ -1,9 +1,10 @@
-<!-- Vercel Deployment Trigger: 2026-11-21 -->
+<!-- Vercel Deployment Trigger: 2026-11-27 -->
 <div align="center">
 
 # 🚌 BlueBus — Web-Based Bus Ticket Booking System
 ### Full-Stack MERN Online Bus Reservation Platform with Smart Seat Layouts, AI Travel Assistant & Instant E-Ticket PDF Downloads
 
+[![Live Demo](https://img.shields.io/badge/Live_Demo-web--based--ticket--booking--system--mz4.vercel.app-00df8f?style=for-the-badge&logo=vercel&logoColor=white)](https://web-based-ticket-booking-system-mz4.vercel.app)
 [![React](https://img.shields.io/badge/React-18.2.0-61dafb?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
 [![Redux](https://img.shields.io/badge/Redux-4.2.1-764abc?style=for-the-badge&logo=redux&logoColor=white)](https://redux.js.org/)
 [![Node.js](https://img.shields.io/badge/Node.js-18%2B-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
@@ -12,7 +13,7 @@
 [![Razorpay](https://img.shields.io/badge/Payment-Razorpay-02042B?style=for-the-badge&logo=razorpay&logoColor=3395FF)](https://razorpay.com/)
 [![License](https://img.shields.io/badge/License-MIT-blue.badge?style=for-the-badge)](#license)
 
-[🌟 Live Features](#-key-features) • [🛠️ Tech Stack](#-technology-stack) • [⚡ Quick Start](#-quick-start-local) • [🚀 Cloud Deployment](#-production-deployment) • [📡 API Reference](#-rest-api-endpoints)
+[🚀 Live Demo](https://web-based-ticket-booking-system-mz4.vercel.app) • [🌟 Live Features](#-key-features) • [🛠️ Tech Stack](#-technology-stack) • [⚡ Quick Start](#-quick-start-local) • [📡 API Reference](#-rest-api-endpoints)
 
 </div>
 
