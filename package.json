@@ -8,6 +8,15 @@
     "postinstall": "cd code/server && npm install --no-audit --no-fund",
     "start": "cd code/server && node index.js"
   },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "moment": "^2.29.4",
+    "mongoose": "^7.0.0",
+    "razorpay": "^2.8.6"
+  },
   "engines": {
     "node": "26.x"
   }

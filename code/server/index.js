@@ -31,6 +31,20 @@ app.get("/health", (req, res) => {
   });
 });
 
+// Ensure database is connected for all incoming requests (crucial for Serverless Vercel environment)
+app.use(async (req, res, next) => {
+  try {
+    if (mongoose.connection.readyState !== 1) {
+      await connect();
+      await ensureInitialData();
+    }
+    next();
+  } catch (err) {
+    console.error("DB connection error:", err.message);
+    next();
+  }
+});
+
 app.use("/user",userRouter)
 app.use("/city", cityRouter);
 app.use("/bus", busRouter);
@@ -79,12 +93,16 @@ async function ensureInitialData() {
   }
 }
 
-app.listen(port, "0.0.0.0", async () => {
-  try {
-    await connect();
-    await ensureInitialData();
-    console.log(`listening on http://localhost:${port}`);
-  } catch (error) {
-    console.log(error.message);
-  }
-});
+if (!process.env.VERCEL) {
+  app.listen(port, "0.0.0.0", async () => {
+    try {
+      await connect();
+      await ensureInitialData();
+      console.log(`listening on http://localhost:${port}`);
+    } catch (error) {
+      console.log(error.message);
+    }
+  });
+}
+
+module.exports = app;
