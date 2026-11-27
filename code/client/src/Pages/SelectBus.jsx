@@ -119,12 +119,8 @@ function SelectBus() {
         to,
         date,
       });
-      if (res.data.length === 0) {
-        dispatch(saveDatafilter([]));
-        setwentwrong(false);
-        return;
-      }
-      dispatch(saveDatafilter(res.data));
+      const busList = Array.isArray(res.data) ? res.data : (res.data?.data || []);
+      dispatch(saveDatafilter(busList));
       setwentwrong(false);
 
       // Sequence 3: AI Bus Recommendations fetch

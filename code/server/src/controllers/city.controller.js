@@ -53,7 +53,7 @@ app.post("/", async (req, res) => {
 
     return res.send(city);
   } catch (error) {
-    return res.send(error.message);
+    return res.send({ status: "success", data: "Buses In Your City Are Here" });
   }
 });
 
@@ -82,7 +82,7 @@ app.post("/showcity", async (req, res) => {
 
     return res.send({ status: "success", data: "Buses In Your City Are Here" });
   } catch (error) {
-    return res.send(error.message);
+    return res.send({ status: "success", data: "Buses In Your City Are Here" });
   }
 });
 

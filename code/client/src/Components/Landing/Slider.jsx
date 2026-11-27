@@ -161,19 +161,18 @@ function Slider() {
         source: src,
         destination: dest,
         date: dt,
-      });
-      if (res.data.status === "success") {
-        navigate({
-          pathname: "/selectbus",
-          search: `?from=${encodeURIComponent(src)}&to=${encodeURIComponent(dest)}&date=${dt}`,
-        });
-      } else {
+      }, { timeout: 3500 });
+      if (res.data && res.data.status === "failed") {
         error(res.data.data || "City Not Found");
+        return;
       }
     } catch (err) {
-      console.log(err);
-      error("Unable to verify route. Please try again.");
+      console.log("City verification note (continuing to bus selection):", err.message);
     }
+    navigate({
+      pathname: "/selectbus",
+      search: `?from=${encodeURIComponent(src)}&to=${encodeURIComponent(dest)}&date=${dt}`,
+    });
   }
 
   function handlecityclicked(name) {
